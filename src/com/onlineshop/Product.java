@@ -1,12 +1,14 @@
 package com.onlineshop;
 
-public class Product {
-    private String name;
-    private int stock;
+public abstract class Product {
+    protected String name;
+    protected int stock;
+    protected int price;
 
-    public Product(String name, int stock) {
+    public Product(String name, int stock, int price) {
         this.name = name;
         this.stock = stock;
+        this.price = price;
     }
 
     public String getName() {
@@ -17,11 +19,19 @@ public class Product {
         return stock;
     }
 
-    public void increaseStock(int count) {
-        stock += count;
+    public int getPrice() {
+        return price;
     }
 
-    public void decreaseStock(int count) {
-        stock -= count;
+    public void increaseStock(int amount) {
+        this.stock += amount;
     }
+
+    public void decreaseStock(int qty) {
+        if (qty <= stock) {
+            stock -= qty;
+        }
+    }
+
+    public abstract String getCategory();  
 }
